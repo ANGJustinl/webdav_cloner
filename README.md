@@ -1,6 +1,19 @@
 # webdav_cloner | [webdav克隆](docs\README_zh.md)
 Clone files between multiple WebDAV endpoints.
 
+## Releases
+
+Pre-built binaries for Linux, Windows, and macOS (both AMD64 and ARM64) are automatically created when a new version tag is pushed to the repository. Download the latest release from the [Releases page](https://github.com/ANGJustinl/webdav_cloner/releases).
+
+To create a new release, simply push a tag starting with `v`:
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+The GitHub Actions workflow will automatically build binaries for all supported platforms and create a new release with the compiled artifacts.
+
 ## Build
 
 ```powershell
