@@ -1,0 +1,22 @@
+# 将此文件复制为 config.yaml 并根据实际环境调整各项配置
+jobs:
+  - name: "示例任务"                     # 任务名称，可自定义
+    source:
+      url: "https://source.example.com/remote.php/dav/files/admin"  # 源 WebDAV 地址
+      username: "admin"                   # 源端用户名
+      password: ""                        # 源端密码，留空则使用下方的 password_env
+      password_env: "SOURCE_PASSWORD"     # 从环境变量读取密码，可为空
+      root: "/"                           # 源端根目录，默认为 "/"
+    targets:
+      - url: "https://mirror-one.example.com/webdav"  # 目标 WebDAV 地址
+        username: "mirror"                            # 目标端用户名
+        password: ""                                  # 目标端密码
+        password_env: "MIRROR_ONE_PASSWORD"           # 从环境变量读取密码，可为空
+        root: "/projects/mirror"                      # 同步到目标端的根目录
+      - url: "https://mirror-two.example.com/webdav"
+        username: "mirror"
+        password_env: "MIRROR_TWO_PASSWORD"
+        root: "/projects/mirror"
+    path: "project-a"                    # 可选：只同步源端的子路径，留空代表整个根目录
+    concurrency: 4                       # 可选：覆盖默认的并发数量
+
