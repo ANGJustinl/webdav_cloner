@@ -1,4 +1,4 @@
-# webdav_cloner | [webdav克隆](docs\README_zh.md)
+# webdav_cloner | [webdav克隆](docs/README_zh.md)
 Clone files between multiple WebDAV endpoints.
 
 ## Releases
