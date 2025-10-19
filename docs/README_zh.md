@@ -2,6 +2,19 @@
 
 `webdav-cloner` 是一个使用 Go 编写的命令行工具，可在多个 WebDAV 端点之间同步（克隆）文件。工具会遍历源端目录，将新增或更新的文件复制到一个或多个目标端，可配合 `--dry-run` 预览操作结果。
 
+## 下载发布版本
+
+可以从 [Releases 页面](https://github.com/ANGJustinl/webdav_cloner/releases) 下载已编译好的二进制文件，支持 Linux、Windows 和 macOS 平台（AMD64 和 ARM64 架构）。
+
+当仓库推送新的版本标签（以 `v` 开头）时，GitHub Actions 会自动编译所有平台的二进制文件并创建发布版本。例如：
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+推送标签后，工作流会自动构建并发布所有支持平台的二进制文件。
+
 ## 快速开始
 
 1. 安装 Go 1.21 及以上版本。
