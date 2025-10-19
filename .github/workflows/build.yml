@@ -9,6 +9,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        goos: [linux, windows, darwin]
+        goarch: [amd64, arm64]
+        exclude:
+          - goos: windows
+            goarch: arm64
     
     steps:
     - uses: actions/checkout@v4
@@ -21,8 +28,16 @@ jobs:
     - name: Install dependencies
       run: go mod download
 
-    - name: Build
-      run: go build -v -o bin/webdav-cloner ./cmd/webdav-cloner
+    - name: Build for ${{ matrix.goos }}/${{ matrix.goarch }}
+      env:
+        GOOS: ${{ matrix.goos }}
+        GOARCH: ${{ matrix.goarch }}
+      run: |
+        if [ "${{ matrix.goos }}" = "windows" ]; then
+          go build -v -o bin/webdav-cloner-${{ matrix.goos }}-${{ matrix.goarch }}.exe ./cmd/webdav-cloner
+        else
+          go build -v -o bin/webdav-cloner-${{ matrix.goos }}-${{ matrix.goarch }} ./cmd/webdav-cloner
+        fi
 
     - name: Run go vet
       run: go vet ./...
